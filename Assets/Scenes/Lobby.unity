@@ -8380,6 +8380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pickable_object
       objectReference: {fileID: 0}
+    - target: {fileID: 381736493239282434, guid: 2d3f4d921a3ebfc4c8009294f247d513, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 385893098836545071, guid: 2d3f4d921a3ebfc4c8009294f247d513, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -12121,7 +12125,6 @@ GameObject:
   - component: {fileID: 1014351883}
   - component: {fileID: 1014351882}
   - component: {fileID: 1014351879}
-  - component: {fileID: 1014351880}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -12217,18 +12220,6 @@ MonoBehaviour:
   Player: {fileID: 1014351878}
   Player_gb: {fileID: 1014351872}
   pickup_range: 3
---- !u!114 &1014351880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014351872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbdb4dcc1135ac444b885b5eb8343ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::player_DontDestroyOnLoad
 --- !u!114 &1014351882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15219,6 +15210,10 @@ PrefabInstance:
     - target: {fileID: 1570117742723030385, guid: a4ab8cb39b2ed1d4488cc9219b9b384f, type: 3}
       propertyPath: m_Name
       value: gun 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570117742723030385, guid: a4ab8cb39b2ed1d4488cc9219b9b384f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3782332858803858055, guid: a4ab8cb39b2ed1d4488cc9219b9b384f, type: 3}
       propertyPath: m_LocalScale.x
@@ -20775,6 +20770,10 @@ PrefabInstance:
     - target: {fileID: 5865103908205701371, guid: 5a76d69ca3d646b41b89d6ef1514bcbb, type: 3}
       propertyPath: m_Name
       value: knockback gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865103908205701371, guid: 5a76d69ca3d646b41b89d6ef1514bcbb, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30110,6 +30109,10 @@ PrefabInstance:
     - target: {fileID: 1711907375910590555, guid: a372ee929d604484b98311a12a8a793b, type: 3}
       propertyPath: m_Name
       value: grappler gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711907375910590555, guid: a372ee929d604484b98311a12a8a793b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2762015331758937612, guid: a372ee929d604484b98311a12a8a793b, type: 3}
       propertyPath: m_LocalPosition.x

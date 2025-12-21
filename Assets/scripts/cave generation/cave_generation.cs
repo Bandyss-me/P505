@@ -3,8 +3,10 @@ using UnityEngine;
 public class cave_generation : MonoBehaviour
 {
     public GameObject prefab;
+    public int tunnelCount;
+    public int radius;
     public int seed;
-    public int density;
+    public int density=100;
     public int width=100;
     public int height=100;
     public int depth=100;
@@ -26,9 +28,7 @@ public class cave_generation : MonoBehaviour
         for(int x=0; x<width; x++){
             for(int y=0; y<depth; y++){
                 for(int z=0; z<height; z++){
-                    float axisFactor=Mathf.Abs((float)y-depth/2)/(depth/2);
-                    int adjustedDensity=(int)(density+axisFactor*30);
-                    if(rand.Next(100)<adjustedDensity){
+                    if(rand.Next(100)<density){
                         map[x,y,z]=1;
                     }
                     else{
@@ -41,12 +41,37 @@ public class cave_generation : MonoBehaviour
 
     void CarveTunnels(){
         System.Random rand=new System.Random(seed);
-
-        int tunnelCount=2;
         for(int t=0;t<tunnelCount;t++){
-            int x=rand.Next(1, width-2);
-            int y=rand.Next(1, depth-2);
-            int z=rand.Next(1, height-2);
+            for(int i=0;i<=rand.Next(20);i++){
+                int x=0,y=0,z=0;
+                int fx=rand.Next(1,width);
+                int fy=rand.Next(1,depth);
+                int fz=rand.Next(1,height);
+                while(x!=fx || y!=fy || z!=fz){
+                    for(int dx=-radius;dx<=radius;dx++){
+                        for(int dy=-radius;dy<=radius;dy++){
+                            for(int dz=-radius;dz<=radius;dz++){
+                                int nx=Mathf.Clamp(x+dx,1,width-2);
+                                int ny=Mathf.Clamp(y+dy,1,depth-2);
+                                int nz=Mathf.Clamp(z+dz,1,height-2);
+                                map[nx,ny,nz]=0;
+                            }
+                        }
+                    }
+                    if(fx>x)
+                        x++;
+                    else if(fx<x)
+                        x--;
+                    if(fy>y)
+                        y++;
+                    else if(fy<y)
+                        y--;
+                    if(fz>z)
+                        z++;
+                    else if(fz<z)
+                        z--;
+                }
+            }
         }
     }
 

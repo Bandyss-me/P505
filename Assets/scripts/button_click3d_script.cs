@@ -19,7 +19,7 @@ public class button_click3d_script : MonoBehaviour
         if(Physics.Raycast(mainCamera.position, mainCamera.forward, out hit, 3f)){
             if(hit.collider.gameObject==gameObject){
                 DontDestroyOnLoad(player);
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene("Cave");
             }
         }
     }
