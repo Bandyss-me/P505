@@ -1,0 +1,8 @@
+# Ignore all files in Temp directory
+Temp/
+
+# Optional: ignore common OS temp files
+*.swp
+*.tmp
+*.DS_Store
+Thumbs.db
