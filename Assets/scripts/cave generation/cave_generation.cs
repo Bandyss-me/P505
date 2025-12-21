@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
 public class cave_generation : MonoBehaviour
 {
     public GameObject prefab;
@@ -12,6 +14,8 @@ public class cave_generation : MonoBehaviour
     public int depth=100;
     public int smooth_level=5;
     int[,,] map;
+    int[,,] fillMap;
+    Mesh mesh;
 
     void Start(){
         GenerateCave();
@@ -19,7 +23,11 @@ public class cave_generation : MonoBehaviour
         for(int k=0;k<smooth_level;k++){
             SmoothMap();
         }
-        Fill();
+        fillMap=new int[width,depth,height];
+        GetFillVoxels(2,2,height-2);
+        mesh = MarchingCubes.GenerateMesh(fillMap, 0,5f);
+        GetComponent<MeshFilter>().mesh = mesh;
+        GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
     void GenerateCave(){
@@ -43,18 +51,20 @@ public class cave_generation : MonoBehaviour
         System.Random rand=new System.Random(seed);
         for(int t=0;t<tunnelCount;t++){
             for(int i=0;i<=rand.Next(20);i++){
-                int x=0,y=0,z=0;
-                int fx=rand.Next(1,width);
-                int fy=rand.Next(1,depth);
-                int fz=rand.Next(1,height);
+                int x=0,y=0,z=height-1;
+                int fx=rand.Next(1,width-radius);
+                int fy=rand.Next(1,depth-radius);
+                int fz=rand.Next(1,height-radius);
                 while(x!=fx || y!=fy || z!=fz){
                     for(int dx=-radius;dx<=radius;dx++){
                         for(int dy=-radius;dy<=radius;dy++){
                             for(int dz=-radius;dz<=radius;dz++){
-                                int nx=Mathf.Clamp(x+dx,1,width-2);
-                                int ny=Mathf.Clamp(y+dy,1,depth-2);
-                                int nz=Mathf.Clamp(z+dz,1,height-2);
-                                map[nx,ny,nz]=0;
+                                if(dx*dx+dy*dy+dz*dz<=radius*radius){
+                                    int nx=Mathf.Clamp(x+dx,1,width-2);
+                                    int ny=Mathf.Clamp(y+dy,1,depth-2);
+                                    int nz=Mathf.Clamp(z+dz,1,height-2);
+                                    map[nx,ny,nz]=0;
+                                }
                             }
                         }
                     }
@@ -108,20 +118,31 @@ public class cave_generation : MonoBehaviour
         }
     }
 
-    bool IsSurface(int x,int y,int z){
-        if(x+1>=width || map[x+1,y,z]==0 || x-1<0 || map[x-1,y,z]==0 || y+1>=depth || map[x,y+1,z]==0 || y-1<0 || map[x,y-1,z]==0 || z+1>=height || map[x,y,z+1]==0 || z-1<0 || map[x,y,z-1]==0)
-            return true;
-        return false;
-    }
-
-    void Fill(){
-        for(int x=0; x<width; x++){
-            for(int y=0; y<depth; y++){
-                for(int z=0; z<height; z++){
-                    if(map[x,y,z]==1 && IsSurface(x,y,z))
-                        Instantiate(prefab,new Vector3(x,z,y),Quaternion.identity,transform);
-                }
+    void GetFillVoxels(int x,int y,int z){
+        Queue<Vector3Int> queue=new Queue<Vector3Int>();
+        queue.Enqueue(new Vector3Int(x,y,z));
+        while(queue.Count>0){
+            Vector3Int pos=queue.Dequeue();
+            int a=pos.x;
+            int b=pos.y;
+            int c=pos.z;
+            if(a<=0 || a>=width-1 || b<=0 || b>=depth-1 || c<=0 || c>=height-1)
+                continue;
+            if(fillMap[a,b,c]!=0)
+                continue;
+            if(map[a,b,c]==1){
+                fillMap[a,b,c]=1;
+                continue;
             }
+            else{
+                fillMap[a,b,c]=-1;
+            }
+            queue.Enqueue(new Vector3Int(a+1,b,c));
+            queue.Enqueue(new Vector3Int(a-1,b,c));
+            queue.Enqueue(new Vector3Int(a,b+1,c));
+            queue.Enqueue(new Vector3Int(a,b-1,c));
+            queue.Enqueue(new Vector3Int(a,b,c+1));
+            queue.Enqueue(new Vector3Int(a,b,c-1));
         }
     }
 }

@@ -70,8 +70,9 @@ public class player_movement : MonoBehaviour
             jump();
             jumopressed=false;
         }
-        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, floatHeight * 1.5f))
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, floatHeight * 1.5f)){
             move();
+        }
     }
 
 

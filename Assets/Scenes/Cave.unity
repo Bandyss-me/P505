@@ -434,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 1260607081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -100, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 0.1, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -472,7 +472,7 @@ MonoBehaviour:
   prefab: {fileID: 1806012706348048360, guid: 398b5516f505680479616e3c92136d02, type: 3}
   tunnelCount: 5
   radius: 2
-  seed: 3456
+  seed: 54723
   density: 50
   width: 300
   height: 300
@@ -487,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 1683455212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
