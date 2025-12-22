@@ -13,9 +13,9 @@ public class cave_generation : MonoBehaviour
     public int height=100;
     public int depth=100;
     public int smooth_level=5;
+    public Material mat;
     int[,,] map;
     int[,,] fillMap;
-    Mesh mesh;
 
     void Start(){
         GenerateCave();
@@ -25,9 +25,14 @@ public class cave_generation : MonoBehaviour
         }
         fillMap=new int[width,depth,height];
         GetFillVoxels(2,2,height-2);
-        mesh = MarchingCubes.GenerateMesh(fillMap, 0,5f);
-        GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshCollider>().sharedMesh = mesh;
+        Mesh innerMesh,outerMesh;
+        innerMesh = MarchingCubes.GenerateMesh(fillMap,0,5f);
+        outerMesh = MarchingCubes.GenerateMesh(fillMap,2,5f);
+        MarchingCubes.FlipMesh(innerMesh);
+        Mesh finalMesh=MarchingCubes.CombineMeshes(outerMesh,innerMesh);
+        GetComponent<MeshFilter>().mesh = finalMesh;
+        GetComponent<MeshCollider>().sharedMesh = finalMesh;
+        GetComponent<MeshRenderer>().material=mat;
     }
 
     void GenerateCave(){

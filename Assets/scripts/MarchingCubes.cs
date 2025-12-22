@@ -349,6 +349,33 @@ public static class MarchingCubes
         return mesh;
     }
 
+    public static void FlipMesh(Mesh mesh){
+        Vector3[] normals=mesh.normals;
+        for(int i=0;i<normals.Length;i++){
+            normals[i]=-normals[i];
+        }
+        mesh.normals=normals;
+        int[] tris=mesh.triangles;
+        for(int i=0;i<tris.Length;i+=3){
+            int tmp=tris[i];
+            tris[i]=tris[i+1];
+            tris[i+1]=tmp;
+        }
+        mesh.triangles=tris;
+    }
+
+    public static Mesh CombineMeshes(Mesh a,Mesh b){
+        Mesh mesh=new Mesh();
+        var combine=new CombineInstance[2];
+        combine[0].mesh=a;
+        combine[0].transform=Matrix4x4.identity;
+        combine[1].mesh=b;
+        combine[1].transform=Matrix4x4.identity;
+        mesh.CombineMeshes(combine,true,false);
+        mesh.RecalculateNormals();
+        return mesh;
+    }
+
     private static Vector3Int CubeCornerOffset(int i){
         switch(i){
             case 0:

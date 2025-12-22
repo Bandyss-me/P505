@@ -2958,7 +2958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3419d274695bd074590a5637c4ae5865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::set_price_script
-  price: 5
+  price: 0
 --- !u!1001 &262782847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3489,7 +3489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3419d274695bd074590a5637c4ae5865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::set_price_script
-  price: 5
+  price: 0
 --- !u!1001 &344758494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8492,7 +8492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3419d274695bd074590a5637c4ae5865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::set_price_script
-  price: 5
+  price: 0
 --- !u!1001 &769765538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26283,7 +26283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3419d274695bd074590a5637c4ae5865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::set_price_script
-  price: 5
+  price: 0
 --- !u!1 &1911576545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7e5251d2ef771ce4c8930bbdad272bf4, type: 3}
