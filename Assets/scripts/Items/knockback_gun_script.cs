@@ -3,19 +3,15 @@ using UnityEngine;
 public class knockback_gun_script : MonoBehaviour
 {
     public Transform MainCamera,player;
-    public bool Arm;
-    int arm;
+    public int Arm;
     Rigidbody rb;
 
     void OnEnable(){
         rb=player.GetComponent<Rigidbody>();
-        if(Arm==false)
-            arm=0;
-        else arm=1;
     }
 
     void Update(){
-        if(Input.GetMouseButtonDown(arm))
+        if(Input.GetMouseButtonDown(Arm))
             Shoot();
     }
 

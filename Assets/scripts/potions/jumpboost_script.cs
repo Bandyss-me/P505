@@ -6,17 +6,10 @@ public class jumpboost_script : MonoBehaviour
     public GameObject player;
     [SerializeField]
     float dur, jeff;
-    public bool Arm;
-    int arm;
-
-    void OnEnable(){
-        if(Arm==false)
-            arm=0;
-        else arm=1;
-    }
+    public int Arm;
 
     void Update(){
-        if(Input.GetMouseButtonDown(arm))
+        if(Input.GetMouseButtonDown(Arm))
             Use();
     }
 

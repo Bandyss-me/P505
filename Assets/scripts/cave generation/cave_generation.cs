@@ -18,6 +18,7 @@ public class cave_generation : MonoBehaviour
     int[,,] fillMap;
 
     void Start(){
+        seed=Random.Range(0,999999999);
         GenerateCave();
         CarveTunnels();
         for(int k=0;k<smooth_level;k++){

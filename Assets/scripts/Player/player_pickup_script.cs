@@ -17,7 +17,7 @@ public class player_pickup_script : MonoBehaviour
         layer=LayerMask.GetMask("items");
     }
 
-    void ItemEnable(bool arm, GameObject obj){
+    void ItemEnable(int arm, GameObject obj){
         if(obj.GetComponent<grappler_script>()){
             grappler_script script=obj.GetComponent<grappler_script>();
             script.MainCamera=mainCamera;
@@ -35,6 +35,11 @@ public class player_pickup_script : MonoBehaviour
             knockback_gun_script script=obj.GetComponent<knockback_gun_script>();
             script.MainCamera=mainCamera;
             script.player=Player;
+            script.Arm=arm;
+            script.enabled=true;
+        }
+        else if(obj.GetComponent<flashlight_script>()){
+            flashlight_script script=obj.GetComponent<flashlight_script>();
             script.Arm=arm;
             script.enabled=true;
         }
@@ -70,6 +75,10 @@ public class player_pickup_script : MonoBehaviour
             script.player=null;
             script.enabled=false;
         }
+        else if(obj.GetComponent<flashlight_script>()){
+            flashlight_script script=obj.GetComponent<flashlight_script>();
+            script.enabled=false;
+        }
         else if(obj.GetComponent<speed_potion_script>()){
             speed_potion_script script=obj.GetComponent<speed_potion_script>();
             script.player=null;
@@ -84,20 +93,20 @@ public class player_pickup_script : MonoBehaviour
 
     void Update(){
         if(Input.GetMouseButtonDown(0) && lheldrb==null){
-            Pickup(false);
+            Pickup(0);
         }
         if(Input.GetMouseButtonDown(1) && rheldrb==null){
-            Pickup(true);
+            Pickup(1);
         }
         if(Input.GetKey(KeyCode.Q) && lheldrb!=null){
-            DropObj(false);
+            DropObj(0);
         }
         if(Input.GetKey(KeyCode.E) && rheldrb!=null){
-            DropObj(true);
+            DropObj(1);
         }
     }
 
-    void Pickup(bool arm){
+    void Pickup(int arm){
         RaycastHit hit;
         if(Physics.Raycast(mainCamera.position, mainCamera.forward, out hit, pickup_range, layer)){
             Rigidbody rb=hit.collider.GetComponent<Rigidbody>();
@@ -106,7 +115,7 @@ public class player_pickup_script : MonoBehaviour
                 Destroy(hit.collider.GetComponent<Item_SaveMyData>());
             ItemEnable(arm,hit.collider.gameObject);
             if(rb){
-                if(arm==false){
+                if(arm==0){
                     lcol=col;
                     lheldrb=rb;
                     lheldrb.useGravity=false;
@@ -117,7 +126,7 @@ public class player_pickup_script : MonoBehaviour
                     lheldrb.transform.localPosition=Vector3.zero;
                     lheldrb.transform.localRotation=Quaternion.identity;
                 }
-                else{
+                else if(arm==1){
                     rcol=col;
                     rheldrb=rb;
                     rheldrb.useGravity=false;
@@ -132,8 +141,8 @@ public class player_pickup_script : MonoBehaviour
         }
     }
 
-    void DropObj(bool arm){
-        if(arm==false){
+    void DropObj(int arm){
+        if(arm==0){
             ItemDisable(lheldrb.gameObject);
             lheldrb.useGravity=true;
             lheldrb.isKinematic=false;
@@ -144,7 +153,7 @@ public class player_pickup_script : MonoBehaviour
             if(lheldrb.gameObject.GetComponent<Item_SaveMyData>()==null)
                 lheldrb.gameObject.AddComponent<Item_SaveMyData>();
         }
-        else{
+        else if(arm==1){
             ItemDisable(rheldrb.gameObject);
             rheldrb.useGravity=true;
             rheldrb.isKinematic=false;

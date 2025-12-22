@@ -7,17 +7,13 @@ public class grappler_script : MonoBehaviour
     public LayerMask grapple_layer;
     public Transform guntip, MainCamera, player;
     public float maxDistance;
-    public bool Arm;
+    public int Arm;
     SpringJoint joint;
-    int arm;
 
     void OnEnable(){
         lr=GetComponent<LineRenderer>();
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        if(Arm==false)
-            arm=0;
-        else arm=1;
     }
 
     void OnDisable(){
@@ -25,9 +21,9 @@ public class grappler_script : MonoBehaviour
     }
 
     void Update(){
-        if(Input.GetMouseButtonDown(arm))
+        if(Input.GetMouseButtonDown(Arm))
             StarGrapple();
-        if(Input.GetMouseButtonUp(arm))
+        if(Input.GetMouseButtonUp(Arm))
             StopGrapple();
     }
 

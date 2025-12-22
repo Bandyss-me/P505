@@ -5,17 +5,10 @@ public class gun_script : MonoBehaviour
     public GameObject bullet;
     public GameObject gun;
     public Transform MainCamera;
-    public bool Arm;
-    int arm;
-
-    void OnEnable(){
-        if(Arm==false)
-            arm=0;
-        else arm=1;
-    }
+    public int Arm;
 
     void Update(){
-        if(Input.GetMouseButtonDown(arm))
+        if(Input.GetMouseButtonDown(Arm))
             Shoot();
     }
 
