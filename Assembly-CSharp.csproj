@@ -69,6 +69,7 @@
     <Compile Include="Assets\scripts\Items\gun_bullet_script.cs" />
     <Compile Include="Assets\scripts\MarchingCubes.cs" />
     <Compile Include="Assets\scripts\potions\speed_potion_script.cs" />
+    <Compile Include="Assets\scripts\forest generation\forest_generation.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Item_LoadMe.cs" />
     <Compile Include="Assets\scripts\Items\knockback_gun_script.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Save_manager.cs" />

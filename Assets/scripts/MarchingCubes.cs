@@ -299,7 +299,7 @@ public static class MarchingCubes
         {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
     };
 
-    public static Mesh GenerateMesh(int[,,] map,int isoLevel, float scale){
+    public static Mesh GenerateMesh(float[,,] map,float isoLevel, float scale){
         List<Vector3> vertices=new List<Vector3>();
         List<int> triangles=new List<int>();
         int width=map.GetLength(0);

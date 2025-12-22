@@ -4,7 +4,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
 public class cave_generation : MonoBehaviour
 {
-    public GameObject prefab;
     public int tunnelCount;
     public int radius;
     public int seed;
@@ -14,8 +13,8 @@ public class cave_generation : MonoBehaviour
     public int depth=100;
     public int smooth_level=5;
     public Material mat;
-    int[,,] map;
-    int[,,] fillMap;
+    float[,,] map;
+    float[,,] fillMap;
 
     void Start(){
         seed=Random.Range(0,999999999);
@@ -24,7 +23,7 @@ public class cave_generation : MonoBehaviour
         for(int k=0;k<smooth_level;k++){
             SmoothMap();
         }
-        fillMap=new int[width,depth,height];
+        fillMap=new float[width,depth,height];
         GetFillVoxels(2,2,height-2);
         Mesh innerMesh,outerMesh;
         innerMesh = MarchingCubes.GenerateMesh(fillMap,0,5f);
@@ -37,7 +36,7 @@ public class cave_generation : MonoBehaviour
     }
 
     void GenerateCave(){
-        map=new int[width,depth,height];
+        map=new float[width,depth,height];
         System.Random rand=new System.Random(seed);
         for(int x=0; x<width; x++){
             for(int y=0; y<depth; y++){
@@ -91,8 +90,8 @@ public class cave_generation : MonoBehaviour
         }
     }
 
-    int GetWallCount(int x,int y,int z){
-        int nr=0;
+    float GetWallCount(int x,int y,int z){
+        float nr=0;
         for(int a=x-1; a<=x+1; a++){
             for(int b=y-1; b<=y+1; b++){
                 for(int c=z-1; c<=z+1; c++){
@@ -114,7 +113,7 @@ public class cave_generation : MonoBehaviour
         for(int x=0; x<width; x++){
             for(int y=0; y<depth; y++){
                 for(int z=0; z<height; z++){
-                    int neighbors=GetWallCount(x,y,z);
+                    float neighbors=GetWallCount(x,y,z);
                     if(neighbors>15)
                         map[x,y,z]=1;
                     else if(neighbors<10)
