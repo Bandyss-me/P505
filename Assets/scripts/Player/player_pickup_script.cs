@@ -3,14 +3,14 @@ using UnityEngine;
 public class player_pickup_script : MonoBehaviour
 {
     [SerializeField]
-    Transform left_arm,right_arm,mainCamera,Player;
+    Transform left_arm,right_arm,hip_slot,mainCamera,Player;
     [SerializeField]
     GameObject Player_gb;
     [SerializeField]
     float pickup_range;
 
-    Rigidbody lheldrb,rheldrb;
-    Collider lcol,rcol;
+    Rigidbody lheldrb,rheldrb,hrb;
+    Collider lcol,rcol,hcol;
     LayerMask layer;
 
     void Awake(){
@@ -98,11 +98,17 @@ public class player_pickup_script : MonoBehaviour
         if(Input.GetMouseButtonDown(1) && rheldrb==null){
             Pickup(1);
         }
+        if(Input.GetMouseButtonDown(2) && hrb==null){
+            Pickup(2);
+        }
         if(Input.GetKey(KeyCode.Q) && lheldrb!=null){
             DropObj(0);
         }
         if(Input.GetKey(KeyCode.E) && rheldrb!=null){
             DropObj(1);
+        }
+        if(Input.GetKey(KeyCode.X) && hrb!=null){
+            DropObj(2);
         }
     }
 
@@ -137,6 +143,17 @@ public class player_pickup_script : MonoBehaviour
                     rheldrb.transform.localPosition=Vector3.zero;
                     rheldrb.transform.localRotation=Quaternion.identity;
                 }
+                else if(arm==2){
+                    hcol=col;
+                    hrb=rb;
+                    hrb.useGravity=false;
+                    hrb.isKinematic=true;
+                    hcol.enabled=false;
+
+                    hrb.transform.SetParent(hip_slot);
+                    hrb.transform.localPosition=Vector3.zero;
+                    hrb.transform.localRotation=Quaternion.identity;
+                }
             }
         }
     }
@@ -148,10 +165,10 @@ public class player_pickup_script : MonoBehaviour
             lheldrb.isKinematic=false;
             lheldrb.linearVelocity=left_arm.transform.forward*5f;
             lheldrb.transform.SetParent(null);
-            lheldrb=null;
             lcol.enabled=true;
             if(lheldrb.gameObject.GetComponent<Item_SaveMyData>()==null)
                 lheldrb.gameObject.AddComponent<Item_SaveMyData>();
+            lheldrb=null;
         }
         else if(arm==1){
             ItemDisable(rheldrb.gameObject);
@@ -159,10 +176,21 @@ public class player_pickup_script : MonoBehaviour
             rheldrb.isKinematic=false;
             rheldrb.linearVelocity=right_arm.transform.forward*5f;
             rheldrb.transform.SetParent(null);
-            rheldrb=null;
             rcol.enabled=true;
             if(rheldrb.gameObject.GetComponent<Item_SaveMyData>()==null)
                 rheldrb.gameObject.AddComponent<Item_SaveMyData>();
+            rheldrb=null;
+        }
+        else if(arm==2){
+            ItemDisable(hrb.gameObject);
+            hrb.useGravity=true;
+            hrb.isKinematic=false;
+            hrb.linearVelocity=hip_slot.transform.forward*2f;
+            hrb.transform.SetParent(null);
+            hcol.enabled=true;
+            if(hrb.gameObject.GetComponent<Item_SaveMyData>()==null)
+                hrb.gameObject.AddComponent<Item_SaveMyData>();
+            hrb=null;
         }
     }
 }
