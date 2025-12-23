@@ -170,9 +170,8 @@ MonoBehaviour:
   xlength: 100
   zlength: 100
   ylength: 50
-  medium_height: 25
   seed: 0
-  smooth_level: 5
+  smooth_level: 0
   mat: {fileID: -876546973899608171, guid: 7e5251d2ef771ce4c8930bbdad272bf4, type: 3}
 --- !u!23 &299514868
 MeshRenderer:

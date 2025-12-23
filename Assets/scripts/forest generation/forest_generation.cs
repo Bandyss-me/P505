@@ -88,10 +88,10 @@ public class forest_generation : MonoBehaviour
         for(int x=0;x<xlength;x++){
             for(int z=0;z<zlength;z++){
                 for(int y=ylength-1;y>0;y--){
-                    if(map[x,y-1,z]==1 && Random.Range(0,3)==2)
+                    if(map[x,y,z]==1 && Random.Range(0,250)==2)
                         Instantiate(tree_prefab,new Vector3(x,y,z),Quaternion.identity,transform);
-                    if(map[x,y-1,z]==1)
-                        continue;
+                    if(map[x,y,z]==1)
+                        break;
                 }
             }
         }
