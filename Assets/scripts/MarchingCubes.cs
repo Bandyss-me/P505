@@ -327,7 +327,11 @@ public static class MarchingCubes
                             int[] edgeVerts=EdgeIndex(i);
                             Vector3 p1=new Vector3(x,y,z)+CubeCornerOffset(edgeVerts[0]);
                             Vector3 p2=new Vector3(x,y,z)+CubeCornerOffset(edgeVerts[1]);
-                            vertList[i]=Vector3.Lerp(p1,p2,0.5f)*scale;
+                            float v1=cube[edgeVerts[0]];
+                            float v2=cube[edgeVerts[1]];
+                            float t=(isoLevel-v1)/(v2-v1);
+                            t=Mathf.Clamp01(t);
+                            vertList[i]=Vector3.Lerp(p1,p2,t)*scale;
                         }
                     }
                     for(int i=0;triTable[cubeIndex,i]!=-1;i+=3){

@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree_prefab: {fileID: 919132149155446097, guid: 6396c73533c9b564887234663bfdd3eb, type: 3}
-  xlength: 1000
-  zlength: 1000
-  ylength: 100
-  medium_height: 50
+  xlength: 100
+  zlength: 100
+  ylength: 50
+  medium_height: 25
   seed: 0
   smooth_level: 5
   mat: {fileID: -876546973899608171, guid: 7e5251d2ef771ce4c8930bbdad272bf4, type: 3}
