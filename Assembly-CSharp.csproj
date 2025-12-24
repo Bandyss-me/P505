@@ -54,6 +54,10 @@
     <Compile Include="Assets\scripts\store_restock_script.cs" />
     <Compile Include="Assets\scripts\main_menu_script.cs" />
     <Compile Include="Assets\scripts\Player\player_pickup_script.cs" />
+    <Compile Include="Assets\scripts\mobs\Heap.cs" />
+    <Compile Include="Assets\scripts\mobs\PathRequestManager.cs" />
+    <Compile Include="Assets\scripts\mobs\Unit.cs" />
+    <Compile Include="Assets\scripts\mobs\Line.cs" />
     <Compile Include="Assets\scripts\Player\player_movement.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Items_data.cs" />
     <Compile Include="Assets\scripts\Items\grappler_gun_script.cs" />
@@ -64,6 +68,7 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Item_SaveMyData.cs" />
     <Compile Include="Assets\scripts\button_click3d_script.cs" />
+    <Compile Include="Assets\scripts\mobs\PathFinding.cs" />
     <Compile Include="Assets\scripts\Button_functions.cs" />
     <Compile Include="Assets\scripts\cave generation\cave_generation.cs" />
     <Compile Include="Assets\scripts\Items\gun_bullet_script.cs" />
@@ -71,6 +76,7 @@
     <Compile Include="Assets\scripts\MarchingCubes.cs" />
     <Compile Include="Assets\scripts\potions\speed_potion_script.cs" />
     <Compile Include="Assets\scripts\forest generation\forest_generation.cs" />
+    <Compile Include="Assets\scripts\mobs\Pathh.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Item_LoadMe.cs" />
     <Compile Include="Assets\scripts\Items\knockback_gun_script.cs" />
     <Compile Include="Assets\scripts\mobs\spawn_mobs.cs" />
