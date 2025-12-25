@@ -13,10 +13,8 @@ public class PathFinding : MonoBehaviour
     }
 
     public void FindPath(PathRequest request,Action<PathResult> callback){
-        Stopwatch sw=new Stopwatch();
         Vector3[] waypoints=new Vector3[0];
         bool pathSucces=false;
-        sw.Start();
         Node startNode=grid.GetNodeFromWorldPoint(request.pathStart);
         Node targetNode=grid.GetNodeFromWorldPoint(request.pathEnd);
         if(startNode.walkable && targetNode.walkable){
@@ -27,8 +25,6 @@ public class PathFinding : MonoBehaviour
                 Node currentNode=openSet.RemoveFirst();
                 closedSet.Add(currentNode);
                 if(currentNode==targetNode){
-                    sw.Stop();
-                    print("Path found: "+sw.ElapsedMilliseconds+" ms");
                     pathSucces=true;
                     break;
                 }

@@ -60,7 +60,7 @@ public class Unit : MonoBehaviour
                 if(pathIndex>=path.slowDownIndex && stoppingDis>0){
                     speedPercent=Mathf.Clamp01(path.turnBoundaries[path.finishLineIndex].DistanceFromPoint(pos2d)/stoppingDis);
                     if(speedPercent>0.3f){
-                        followingPath=false;
+                        //followingPath=false;
                     }
                 }
                 Quaternion targetRotation=Quaternion.LookRotation(path.lookPoints[pathIndex]-transform.position);
