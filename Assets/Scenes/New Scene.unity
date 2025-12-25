@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 1027313159}
   - component: {fileID: 1027313158}
   - component: {fileID: 1027313157}
+  - component: {fileID: 1027313160}
   m_Layer: 0
   m_Name: A*
   m_TagString: Untagged
@@ -470,8 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c5b3809fa9f3e408c0811a02251275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 1891298788}
-  target: {fileID: 1663721837}
 --- !u!114 &1027313158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,12 +483,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b10d84e2a700d44a852e0b5436779d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyDisplayPathGizmos: 1
+  displayGridGizmos: 0
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   gridWorldSize: {x: 200, y: 200}
   nodeRadius: 1
+  walkableRegions: []
+  obstacleProximityPenalty: 10
 --- !u!4 &1027313159
 Transform:
   m_ObjectHideFlags: 0
@@ -505,6 +506,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1027313160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027313156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2afc35b31b34fb499522ac24788b675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1663721836
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +640,7 @@ GameObject:
   - component: {fileID: 1811886473}
   - component: {fileID: 1811886472}
   - component: {fileID: 1811886471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,6 +748,7 @@ GameObject:
   - component: {fileID: 1891298791}
   - component: {fileID: 1891298790}
   - component: {fileID: 1891298789}
+  - component: {fileID: 1891298792}
   m_Layer: 0
   m_Name: spider
   m_TagString: Untagged
@@ -801,7 +815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -876546973899608171, guid: f63d574838ccfb44f84acc05fed0af48, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -831,6 +845,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891298787}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1891298792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891298787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58ce9616d801b9549aafe3d8accafff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1663721837}
+  speed: 30
+  turnSpeed: 3
+  turnDis: 5
+  stoppingDis: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

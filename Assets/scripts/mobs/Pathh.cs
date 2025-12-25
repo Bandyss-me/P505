@@ -5,8 +5,9 @@ public class Pathh
     public readonly Vector3[] lookPoints;
     public readonly Line[] turnBoundaries;
     public readonly int finishLineIndex;
+    public readonly int slowDownIndex;
 
-    public Pathh(Vector3[] waypoints, Vector3 startPos, float turnDis){
+    public Pathh(Vector3[] waypoints, Vector3 startPos, float turnDis,float stoppingDis){
         lookPoints=waypoints;
         turnBoundaries=new Line[lookPoints.Length];
         finishLineIndex=turnBoundaries.Length-1;
@@ -17,6 +18,14 @@ public class Pathh
             Vector2 turnBoundaryPoint=(i==finishLineIndex)?currentPoint:currentPoint-dirToCurrentPoint*turnDis;
             turnBoundaries[i]=new Line(turnBoundaryPoint,previousPoint-dirToCurrentPoint*turnDis);
             previousPoint=turnBoundaryPoint;
+        }
+        float disFromEndPoint=0;
+        for(int i=lookPoints.Length-1;i>0;i--){
+            if(disFromEndPoint>stoppingDis){
+                slowDownIndex=i;
+                break;
+            }
+            disFromEndPoint+=Vector3.Distance(lookPoints[i],lookPoints[i-1]);
         }
     }
 

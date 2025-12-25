@@ -14,9 +14,18 @@ public class grappler_script : MonoBehaviour
         lr=GetComponent<LineRenderer>();
         Rigidbody rb = player.GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        StopGrapple();
+    }
+    
+    void OnStart(){
+        StopGrapple();
     }
 
     void OnDisable(){
+        StopGrapple();
+    }
+
+    void OnActiveSceneChanged(){
         StopGrapple();
     }
 
