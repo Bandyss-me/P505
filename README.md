@@ -1,1 +1,1 @@
-# P505
+You are a cute alien on a planet full of other aliens. There are tons of ways to get resources, like killing monsters, mining, exploring, etc. With those coins you can get gadgets and weapons that make you more powerful. The game is under development and I am planing to publish it on steam.
