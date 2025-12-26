@@ -9,12 +9,24 @@ public class Mob : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if(Input.GetKeyDown(KeyCode.P)){
+            Cube seeker=cubeGrid.GetCubeFromPos(transform.position);
+            Cube Target=cubeGrid.GetCubeFromPos(target.position);
+            Debug.LogWarning("Seeker: "+seeker);
+            Debug.LogWarning("Target: "+Target);
+            if(seeker!=null)
+                Debug.LogWarning("Seeker walkable: "+seeker.walkable);
+            if(Target!=null)
+                Debug.LogWarning("Target walkable: "+Target.walkable);
+            path=PathFinder.FindPath(seeker,Target,cubeGrid.grid,cubeGrid.gridSize);
+            Debug.LogWarning("Path Result: "+(path==null?"NULL":"OK"));
+        }
     }
 
     void Move(){
+
         path=PathFinder.FindPath(cubeGrid.GetCubeFromPos(transform.position),cubeGrid.GetCubeFromPos(target.position),cubeGrid.grid,cubeGrid.gridSize);
-        SimplifyPath(path);
+        //SimplifyPath(path);
     }
 
     void SimplifyPath(List<Cube> path){
@@ -31,9 +43,9 @@ public class Mob : MonoBehaviour
         path=waypoints;
     }
 
-    void OnDrawWithGizmos(){
+    void OnDrawGizmos(){
         foreach(Cube n in path){
-            Gizmos.color=Color.black;
+            Gizmos.color=Color.green;
             Gizmos.DrawCube(n.pos,new Vector3(cubeGrid.cubeRadius*2-1,cubeGrid.cubeRadius*2-1,cubeGrid.cubeRadius*2-1));
         }
     }

@@ -78,6 +78,7 @@
     <Compile Include="Assets\scripts\mobs\Grid.cs" />
     <Compile Include="Assets\scripts\MarchingCubes.cs" />
     <Compile Include="Assets\scripts\potions\speed_potion_script.cs" />
+    <Compile Include="Assets\scripts\cave_menu_script.cs" />
     <Compile Include="Assets\scripts\forest generation\forest_generation.cs" />
     <Compile Include="Assets\scripts\mobs\Pathh.cs" />
     <Compile Include="Assets\scripts\ItemSaving\Item_LoadMe.cs" />

@@ -56,7 +56,7 @@ public class player_movement : MonoBehaviour
     }
 
     void Update(){
-        if(Button_functions.paused)
+        if(Button_functions.paused || cave_menu_script.paused)
             return;
         RotateWithMouse();
         if(Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, floatHeight * 1.5f))
