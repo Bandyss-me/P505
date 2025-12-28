@@ -3,4 +3,4 @@ Currently I have a lobby,where you can buy items (a cube, a grappler gun, a pist
 There is also a cave that every time it generates randomly. For the cave I used procedual generation and marching cubes.
 There is another scene that you can not acces in game where I am working on forest generation also with procedual generation and marching cubes.
 In the last scene that you can't acces where I am working and learning about A* pathfinding.
-#The game is free on https://bandys.itch.io/p505.
+The game is free on https://bandys.itch.io/p505.
